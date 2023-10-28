@@ -4,11 +4,8 @@ import { clear, print, askQuestion } from '../ui/console';
 import { parseHoleInput } from '../ui/parse_input';
 import { Hole, HOLES } from './chapter_1.types';
 
-export function enterTheRabbitHole(name: string) {
+export function enterTheRabbitHole() {
 	clear(false);
-	print('------------------------');
-	print(`🥳 Welcome ${name}! 🥳`);
-	print('------------------------');
 	print('You can see a number of holes: ');
 	HOLES.forEach((h, i) => print(`   ${i} - ${h}`));
 	askQuestion('Which number hole will you choose?', chooseHole);
@@ -37,7 +34,6 @@ function chooseHole(input: string) {
 export function enterHole(hole: Hole): void {
 	clear(true);
 
-	// @ts-ignore 👉 FIXME ❌
 	if (hole === 'Rabbit') {
 		return meetTheCheshireCat();
 	} else {

@@ -1,4 +1,4 @@
-import { enterTheRabbitHole } from './src/chapter_1/chapter_1_rabbit_hole';
+import { seeWhiteRabbit } from './src/chapter_0/chapter_0_attire';
 import { clear, print, askQuestion } from './src/ui/console';
 
 export function haveAdventures(): void {
@@ -7,13 +7,13 @@ export function haveAdventures(): void {
 	print('| Welcome to Wonderland! |');
 	print('--------------------------');
 
-	askQuestion(`What's your name? `, failImmediately); // 👉 FIXME ❌
+	askQuestion(`What's your name? `, startAdventure); // 👉 FIXME ❌
 }
 
 function startAdventure(name: string): void {
 	if (name && name.length > 0) {
 		if (checkEntryCodeIsBiggerThanThree(numberBiggerThanThree)) {
-			return enterTheRabbitHole(name);
+			return seeWhiteRabbit(name);
 		} else {
 			print('***************************************');
 			print(`Hi ${name}. Sadly, the entry code failed! ☹`);
@@ -30,11 +30,11 @@ function failImmediately() {
 	return endAdventure();
 }
 
-const numberBiggerThanThree: any = '11'; // 👉 FIXME ❌
+const numberBiggerThanThree: number = 11; // 👉 FIXME ❌
 
 // 👉 FIXME ❌
-function checkEntryCodeIsBiggerThanThree(code: any) {
-	return code > '3'; // 👉 FIXME ❌
+function checkEntryCodeIsBiggerThanThree(code: number) {
+	return code > 3; // 👉 FIXME ❌
 }
 
 export function endAdventure(): void {
