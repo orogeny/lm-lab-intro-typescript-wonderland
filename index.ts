@@ -1,4 +1,4 @@
-import { seeWhiteRabbit } from './src/chapter_0/chapter_0_attire';
+import { seeWhiteRabbit } from './src/extension_1/extension_1';
 import { clear, print, askQuestion } from './src/ui/console';
 
 export function haveAdventures(): void {

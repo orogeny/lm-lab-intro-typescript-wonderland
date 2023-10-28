@@ -2,9 +2,13 @@ import { endAdventure } from "../..";
 import { enterTheRabbitHole } from "../chapter_1/chapter_1_rabbit_hole";
 import { askQuestion, clear, print } from "../ui/console";
 
-const ATTIRE = [ "Tuxedo", "Tracksuit", "Hoodie", "Waistcoat", "Poncho" ] as const;
+const ATTIRE = [ "tuxedo", "tracksuit", "hoodie", "waistcoat", "poncho" ] as const;
+
+// type Garments = "tuxedo" | "tracksuit" | "hoodie" | "waistcoat" | "poncho";
 
 type Garment = typeof ATTIRE[number];
+
+const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
 
 export function seeWhiteRabbit(name: string) {
     clear(false);
@@ -12,25 +16,33 @@ export function seeWhiteRabbit(name: string) {
 	print(`🥳 Welcome ${name}! 🥳`);
 	print('------------------------');
     print('Lazing on a sun drenched riverbank, a White Rabbit catches your attention.');
-    ATTIRE.forEach((g, i) => print(`   ${i} - ${g}`));
+    ATTIRE.forEach((g) => print(`   a ${capitalize(g)}`));
     askQuestion('You realise he is wearing a:', chooseAttire);
-
 }
 
 function chooseAttire(input: string) {
-    const garment = parseAttierInput(input);   
+    // const garment = parseAttierInput(input);  
+    // const garment = input as Garments;
+    const garment = input.toLowerCase() as Garment;
 
     switch (garment) {
-        case undefined:
-            print(`🤷\t${input} does not scan, compute or add up!`);
-            return endAdventure();
-
-        case "Waistcoat":            
+        case "waistcoat":            
             return enterTheRabbitHole();
 
-        default:
+        case "poncho":  
+        case "tracksuit":   // doesn't scream if we comment out an option
+        case "tuxedo":
+        case "hoodie":
             print(`🤦\ta ${garment} ???`);
             print(`You realise you must have been dreaming and drift off to sleep`);
+            return endAdventure();
+
+        // case "banana":   // does report a problem if we use a non-type string
+        //     print("hello");
+        //     break;
+
+        default:
+            print(`🤷\t${input} does not scan, compute or add up!`);
             return endAdventure();
     }
 }
